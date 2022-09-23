@@ -4,6 +4,7 @@ require_once 'vendor/autoload.php';
 
 use Twig\Loader\FilesystemLoader;
 use Dotenv\Dotenv;
+use App\Routes\Router;
 
 
 // Looking for .env at the root directory
@@ -21,5 +22,15 @@ if ($_ENV['environment'] == 'local') {
     $uri = str_replace('/twigger/', '', $uri);
 }
 
+$router = new Router();
 
-require 'routes/web.php';
+$router->get('/', function() {
+    echo "home";
+});
+
+
+$router->get('/users', function() {
+    echo "users";
+});
+
+$router->run();
