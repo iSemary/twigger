@@ -6,13 +6,20 @@ use App\Controllers\Controller;
 use App\Models\User;
 
 
+// Initialize DB
+// require_once 'app/config/database.php';
+
+
 class UserController extends Controller {
     public function index() {
 
-        echo User::last();
+        $users = (new User)->last();
+
+        return $users;
 
         echo $this->view('app.twig', [
-            'title' => 'Test Title'
+            'title' => 'Test Title',
+            'users' => $users
         ]);
     }
 }

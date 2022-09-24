@@ -6,8 +6,6 @@ use App\Routes\Router;
 // Looking for .env at the root directory
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
-// Initialize DB
-require_once 'app/config/database.php';
 
 
 /**

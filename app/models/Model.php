@@ -2,33 +2,36 @@
 
 namespace App\Models;
 
-class Model {
+use App\Core\Init\DB;
 
-    // const TABLE = null;
-    protected $table = null;
+abstract class Model {
+    protected $table;
 
-    public function __construct($table) {
+    public function TableName() {
+        // Check if there's a table property OR create a dynamic table name depended on the class name
+        // Ex: User -> users
+        $BaseClass = explode('\\', get_called_class());
+        $BaseClass = $BaseClass[array_key_last($BaseClass)]; // users
+        // TODO make sure to add _ if class has 2 Capitalize words
 
-        // define('TABLE', get_called_class());
-
-        $this->table = get_called_class();
-        // $this->TABLE = get_called_class();
+        return $this->table ?? strtolower($BaseClass . 's');
     }
 
-
-    public static function get() {
+    public function get() {
         $query = '';
     }
-    public static function last() {
-
-        // echo get_called_class();
+    public function last($limit = 1) {
         try {
-            // $query = 'SELECT * FROM ' . $this->table . ' ORDER BY id DESC LIMIT 1';
-            // echo $query;
+            $query = 'SELECT * FROM ' . $this->TableName() . ' ORDER BY id DESC LIMIT ' . $limit;
+            $this->exec($query);
         } catch (\Exception $e) {
             echo $e;
         }
     }
-    private function exec() {
+    private function exec($query) {
+
+
+
+        echo (new DB)->run($query);
     }
 }

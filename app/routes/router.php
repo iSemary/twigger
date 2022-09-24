@@ -35,6 +35,9 @@ class router {
         $this->initHandler(self::METHOD_POST, $path, $handler);
     }
 
+    // TODO make collection routes [index, create, save, edit, update, delete]
+
+    
     public function run() {
         $RequestURI = parse_url($_SERVER['REQUEST_URI']);
         $RequestPath = $RequestURI['path'];
