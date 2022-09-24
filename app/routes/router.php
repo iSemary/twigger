@@ -73,8 +73,6 @@ class router {
                 array_merge($_GET, $_POST)
             ]
         );
-
-        // var_dump($RequestPath); 
     }
 }
 

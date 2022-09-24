@@ -1,2 +1,5 @@
 environment=local
 app_name=twigger
+db_name=twigger
+db_user=root
+db_pass=
