@@ -13,11 +13,9 @@ use App\Models\User;
 class UserController extends Controller {
     public function index() {
 
-        $users = (new User)->last();
+        $users = (new User)->last(2);
 
-        return $users;
-
-        echo $this->view('app.twig', [
+        echo $this->view('users/index.twig', [
             'title' => 'Test Title',
             'users' => $users
         ]);

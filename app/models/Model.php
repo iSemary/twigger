@@ -23,15 +23,12 @@ abstract class Model {
     public function last($limit = 1) {
         try {
             $query = 'SELECT * FROM ' . $this->TableName() . ' ORDER BY id DESC LIMIT ' . $limit;
-            $this->exec($query);
+            return $this->exec($query);
         } catch (\Exception $e) {
             echo $e;
         }
     }
-    private function exec($query) {
-
-
-
-        echo (new DB)->run($query);
+    public function exec($query) {
+        return (new DB)->run($query);
     }
 }

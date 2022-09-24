@@ -12,11 +12,8 @@
 	<body>
 		<main class="container">
 			{% include 'layouts/header.twig' %}
-			{{title}}
-			{# <div>{%  %}</div> #}
+			
 			{% block content %}{% endblock %}
-			{# {{ route }}
-						#}
 
 			{% include 'layouts/footer.twig' %}
 		</main>

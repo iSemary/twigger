@@ -31,17 +31,14 @@ class DB {
     }
 
     public function run($query) {
-        $Run = $this->db;
-        $Checkuser = $Run->prepare($query);
-        $Checkuser->execute();
-        $Checkuserf = $Checkuser->fetchAll();
+        $DB = $this->db;
+        $DB = $DB->prepare($query);
+        $DB->execute();
+        $DB = $DB->fetchAll();
 
-        var_dump($Checkuserf);
+        if($DB) {
+            return ($DB);
+        }
 
-        // $this->db->prepare($query);
-        // $this->db->execute();
-        // $this->db = $this->db->fetch();
-
-        // echo $this->db;
     }
 }
