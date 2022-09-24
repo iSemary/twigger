@@ -2,11 +2,13 @@
 
 namespace App\Controllers;
 
+use App\Controllers\Controller;
 
-class UserController
-{
-    public function index()
-    {
-        echo 'users';
+class UserController extends Controller {
+    public function index() {
+
+        echo $this->view('app.twig', [
+            'title' => 'Test Title'
+        ]);
     }
 }

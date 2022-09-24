@@ -2,6 +2,7 @@
 
 require_once 'vendor/autoload.php';
 
+use App\Controllers\UserController;
 use Twig\Loader\FilesystemLoader;
 use Dotenv\Dotenv;
 use App\Routes\Router;
@@ -11,26 +12,24 @@ use App\Routes\Router;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+/**
+ *  Initialize [Twig Template]
+ */
 // Read view files
 $loader = new FilesystemLoader(__DIR__ . '/resources/views');
-// Initialize the loader
 $twig = new \Twig\Environment($loader);
-// Get route path
-$uri = $_SERVER['REQUEST_URI'];
-//  localhost only 
-if ($_ENV['environment'] == 'local') {
-    $uri = str_replace('/twigger/', '', $uri);
-}
+
+/**
+ * Initialize [Route]
+ */
 
 $router = new Router();
 
-$router->get('/', function() {
-    echo "home";
-});
+// Before
+// $router->get('/', UserController::class . '::index');
+// After
+$router->get('/', 'UserController->index');
 
-
-$router->get('/users', function() {
-    echo "users";
-});
+$router->get('/users', 'UserController->index');
 
 $router->run();
