@@ -9,6 +9,7 @@ class router {
     private const CONTROLLER_PATH = '\App\Controllers\\';
     private const METHOD_POST = 'POST';
     private const METHOD_GET = 'GET';
+    private const METHOD_PATCH = 'PATCH';
 
 
     /**
@@ -35,9 +36,17 @@ class router {
         $this->initHandler(self::METHOD_POST, $path, $handler);
     }
 
-    // TODO make collection routes [index, create, save, edit, update, delete]
+    // Collection [Like resources in laravel]
+    public function collection(string $path, $handler): void {
+        $CollectionHandlers = ['index', 'create', 'save', 'edit', 'update', 'explode'];
+        $CollectionMethods = [self::METHOD_GET, self::METHOD_GET, self::METHOD_POST, self::METHOD_GET, self::METHOD_PATCH, self::METHOD_POST];
+        foreach ($CollectionHandlers as $index => $CollectionHandler) {
+            $this->initHandler($CollectionMethods[$index], $path . '/' . $CollectionHandler, $handler . '->' . $CollectionHandler);
+        }
+    }
 
-    
+
+
     public function run() {
         $RequestURI = parse_url($_SERVER['REQUEST_URI']);
         $RequestPath = $RequestURI['path'];
@@ -58,7 +67,7 @@ class router {
             return false;
         } else {
             // EX UserController->index
-            $slices = explode('->',$callback);
+            $slices = explode('->', $callback);
             // UserController
             $class = array_shift($slices);
             // index
@@ -66,9 +75,16 @@ class router {
             // new App\Controllers\UserController
             $class = self::CONTROLLER_PATH . $class;
             $handler = new $class;
+            // Check if not method exists
+            if(!method_exists($handler, $method)){
+                die("Method ".$method." not exists in ".$class);
+            }
             // returns App\Controllers\UserController::class::index
             $callback = [$handler, $method];
         }
+
+
+
         // execute the route and redirect to it's handler
         call_user_func_array(
             $callback,
@@ -78,5 +94,3 @@ class router {
         );
     }
 }
-
-

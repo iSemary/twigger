@@ -15,6 +15,7 @@
   ],
   "require": {
     "twig/twig": "^3.0",
-    "vlucas/phpdotenv": "^5.4"
+    "vlucas/phpdotenv": "^5.4",
+    "smarty/smarty": "^4.2"
   }
 }
