@@ -1,5 +1,16 @@
+# System Configration
 environment=local
 app_name=twigger
+
+# Database Configration
 db_name=twigger
 db_user=root
 db_pass=
+
+# Core Configration
+sys_view=twig
+# camelCase / snake_case / PascalCase
+sys_class_style=PascalCase
+sys_function_style=snake_case
+sys_db_style=snake_case
+sys_vars_style=PascalCase

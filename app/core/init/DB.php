@@ -30,13 +30,32 @@ class DB {
         }
     }
 
+    // TODO To check if the table has 2 words
+    public static function guess_table_name($model): string {
+        // To check if the table will be with [ies] ex: category -> categories
+        if ($model[-1] == 'y') {
+            $table = strtolower(rtrim($model, "y")) . 'ies';
+        } else {
+            $table = strtolower($model) . 's';
+        }
+        return $table;
+    }
+
+    public function table_columns($db_name, $table): array {
+        $query = "SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`= '$db_name' AND `TABLE_NAME`='$table';";
+
+        $columns = $this->run($query);
+
+        return $columns;
+    }
+
     public function run($query) {
         $DB = $this->db;
         $DB = $DB->prepare($query);
         $DB->execute();
         $DB = $DB->fetchAll();
 
-        if($DB) {
+        if ($DB) {
             return ($DB);
         }
 

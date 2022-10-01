@@ -15,4 +15,7 @@ $router = new Router();
 $router->get('/', 'UserController->index');
 $router->get('/users', 'UserController->index');
 $router->collection('/test', 'TestController');
+
+$router->lazy('category');
+
 $router->run();

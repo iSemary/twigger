@@ -6,10 +6,6 @@ use App\Controllers\Controller;
 use App\Models\User;
 
 
-// Initialize DB
-// require_once 'app/config/database.php';
-
-
 class UserController extends Controller {
     public function index() {
 
