@@ -2,6 +2,8 @@
 
 namespace App\core\initializer;
 
+use App\Models\User;
+
 class LazyMVC {
 
     private $template = 'twig';
@@ -9,21 +11,26 @@ class LazyMVC {
     public function __constructor() {
         $this->template = $_ENV['sys_view'];
     }
-    
 
-    public static function controller($model_name, $controller_name, $controller_path, array $db_columns) {
+
+    public static function controller($model_name, $table, $controller_name, $controller_path, array $db_columns) {
         $ControllerFile = fopen($controller_path, "a");
+
 
         $controller_content =
             "<?php
 
               namespace App\Controllers;
               use App\Controllers\Controller;
-              use App\Models\$model_name
+              use App\Models\\$model_name;
               class $controller_name extends Controller  {
                 
                    public function index() {
-                
+                       ".'$values'." = (new $model_name)->last(10);
+                        echo ".'$this'."->view('$table/index.twig', [
+                        'title' => '$table',
+                        '$table' => ".'$values'."
+                        ]);
                    }
                    
                    public function show()  {

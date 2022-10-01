@@ -72,7 +72,7 @@ class router {
             $LazyModelFile = getcwd() . self::ABSOLUTE_MODEL_PATH . $LazyModel . '.php';
             LazyMVC::model($LazyModel, $db_table, $LazyModelFile, $db_columns);
             // Generate controller
-//            LazyMVC::controller($LazyModel, $LazyHandler, $LazyHandlerFile, $db_columns);
+            LazyMVC::controller($LazyModel, $db_table, $LazyHandler, $LazyHandlerFile, $db_columns);
             // Generate views
 //            LazyMVC::views($LazyModel, $db_table, $LazyModelFile, $db_columns);
 

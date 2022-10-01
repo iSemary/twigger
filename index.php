@@ -14,8 +14,11 @@ $dotenv->load();
 $router = new Router();
 $router->get('/', 'UserController->index');
 $router->get('/users', 'UserController->index');
+// Collection of index, show, create, save, edit, update and explode
 $router->collection('/test', 'TestController');
 
 $router->lazy('category');
+
+
 
 $router->run();
