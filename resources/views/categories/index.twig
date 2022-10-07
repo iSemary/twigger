@@ -1,0 +1,58 @@
+{% extends "app.twig" %}
+
+{% block title %}Users
+{% endblock %}
+
+{% block content %}
+
+
+    <h1>Users</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+        </tr>
+        </thead>
+        <tbody>
+        {# Showing active users only #}
+        {% for user in users|filter(user => user.status == 1) %}
+            <tr>
+                <th>{{ user.id }}</th>
+                <th>{{ user.first_name }}</th>
+                <th>{{ user.last_name }}</th>
+                <th>{{ user.email }}</th>
+                <th>{{ user.password }}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% extends "app.twig" %}
+
+{% block title %}
+    Indexs
+{% endblock %}
+
+{% block content %}
+    <h1>Indexs</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ForIndex in InIndexs %}
+            <tr>
+                <th>{{ Index.id }}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

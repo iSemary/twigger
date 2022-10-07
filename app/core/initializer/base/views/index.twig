@@ -1,0 +1,23 @@
+{% extends "app.twig" %}
+
+{% block title %}
+    Indexs
+{% endblock %}
+
+{% block content %}
+    <h1>Indexs</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ForIndex in InIndexs %}
+            <tr>
+                <th>{{ Index.id }}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

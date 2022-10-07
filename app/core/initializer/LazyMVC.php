@@ -26,10 +26,10 @@ class LazyMVC {
               class $controller_name extends Controller  {
                 
                    public function index() {
-                       ".'$values'." = (new $model_name)->last(10);
-                        echo ".'$this'."->view('$table/index.twig', [
+                       " . '$values' . " = (new $model_name)->last(10);
+                        echo " . '$this' . "->view('$table/index.twig', [
                         'title' => '$table',
-                        '$table' => ".'$values'."
+                        '$table' => " . '$values' . "
                         ]);
                    }
                    
@@ -72,8 +72,8 @@ class LazyMVC {
                 
              
                 class $model_name extends Model {
-                protected ".'$table'." = '$table';         
-                protected array ".'$data'." = ".json_encode(array_column($db_columns, 'COLUMN_NAME')).";
+                protected " . '$table' . " = '$table';         
+                protected array " . '$data' . " = " . json_encode(array_column($db_columns, 'COLUMN_NAME')) . ";
                            
                            }
 
@@ -85,13 +85,26 @@ class LazyMVC {
 
     }
 
-    public static function views($model_name, $table, $model_path, array $db_columns){
+    public function views($model_name, $table, $view_path, array $db_columns) {
+        // Create main view directory if not exists
+        if (!file_exists($view_path)) {
+            mkdir($view_path, 0777, true);
+        }
         // Index
+        $ViewsFile = fopen($view_path . 'index.twig', "a");
+        $BaseIndex = file_get_contents(__DIR__ . '/base/views/index.twig');
 
-        // Show
+        $ConvertedIndex = $BaseIndex;
 
-        // Create Form
+        $view_content = $ConvertedIndex;
 
-        // Edit Form
+        fwrite($ViewsFile, "\n" . $view_content);
+        fclose($ViewsFile);
+
+        // Show Single Item
+
+        // Create form base on model data
+
+        // Edit form based on single item and model data
     }
 }
