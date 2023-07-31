@@ -9,7 +9,7 @@
 
 ## Preview
 
-![alt text](https://i.ibb.co/NpmL44g/mvc.webp)
+<img src="https://i.postimg.cc/Tfm1BJ3q/mvc.webp" alt="Image 4">
 
 # Run Project
 
