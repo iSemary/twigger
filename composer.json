@@ -7,6 +7,14 @@
         "App\\" : "app/"
     }
   },
+  "scripts": {
+    "post-install-cmd": [
+      "@composer dump-autoload"
+    ],
+    "post-update-cmd": [
+      "@composer dump-autoload"
+    ]
+  },
   "authors": [
     {
       "name": "Abdelrahman Samir",

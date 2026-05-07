@@ -1,30 +1,34 @@
 # Twigger
 
+Minimal PHP MVC framework with Twig views, collection routes, and auto-generated CRUD structure.
+
 ## Features
 
 - **Twig Engine Base**
 - **Dynamic MVC Generator**
-- **Custom Router File**
-- **Datatables Generator**
+- **Custom Router**
+- **DataTables Generator**
 
 ## Preview
 
 <img src="https://i.postimg.cc/Tfm1BJ3q/mvc.webp" alt="Image 4">
 
-# Run Project
+## Run Project
 
-```
-$ Composer Install
-```
+1. Install dependencies:
 
-```
-- Add your .env file
+```bash
+composer install
 ```
 
-```
-- Make sure autoload.php required App/ Directory
+2. Create your environment file:
+
+```bash
+cp .env.example .env
 ```
 
-```
-$ php -S localhost:8000
+3. Start the local server:
+
+```bash
+php -S localhost:8000
 ```
